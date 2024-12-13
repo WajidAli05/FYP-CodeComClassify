@@ -1,0 +1,25 @@
+Object subclass: #Calculator
+    instanceVariableNames: 'number1 number2'
+
+Calculator class >> addTwoNumbers: aNumber and: anotherNumber
+    "This method will take two numbers and return their sum."
+    ^aNumber + anotherNumber
+
+Calculator class >> promptForInput
+    "This method will ask the user to input two numbers."
+    | firstNumber secondNumber result |
+    
+    "Get the first number"
+    FileStream stdout nextPutAll: 'Enter the first number: '; flush.
+    firstNumber := (FileStream stdin nextLine) asInteger.
+
+    "Get the second number"
+    FileStream stdout nextPutAll: 'Enter the second number: '; flush.
+    secondNumber := (FileStream stdin nextLine) asInteger.
+
+    "Add the numbers using the addTwoNumbers method"
+    result := self addTwoNumbers: firstNumber and: secondNumber.
+
+    "Display the result"
+    FileStream stdout nextPutAll: 'The sum of ', firstNumber printString, ' and ', secondNumber printString, ' is ', result printString; nl; flush.
+
